@@ -2,9 +2,6 @@ from __future__ import annotations
 from .room import Room
 from typing import Self
 
-"""
-The Player class represent a player in the game.
-"""
 
 class Player:
     """
@@ -16,7 +13,7 @@ class Player:
         
         self = super().__new__(cls)
         
-        self.__room = starting_room
+        self.__current_room = starting_room
 
         return self
     
@@ -24,25 +21,17 @@ class Player:
         """
         Moves the player to the room in the given direction if it exists.
         """
-        next_room = self.__room.get_exit(direction)
+        next_room = self.__current_room.get_exit(direction)
+
         if next_room:
-            self.__room = next_room
+            self.__current_room = next_room
         else:
             print(f"Cannot move {direction}, no exit in that direction.")
     
-"""
-    __name: str
-    __description: str
-
-    def __init__(self, name: str, description: str):
-        self.__name = name
-        self.__description = description
 
     @property
-    def name(self) -> str:
-        return self.__name
-
-    @property
-    def description(self) -> str:
-        return self.__description
-"""
+    def currentroom(self) -> Room:
+        """
+        Returns the current room of the player.
+        """
+        return self.__current_room

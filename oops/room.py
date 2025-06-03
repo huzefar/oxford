@@ -11,8 +11,8 @@ class Room:
     __exists: dict
 
     def __new__(cls, name: str, description: str) -> Self:
-    
-        # This creates a new instance of the class 
+
+        # This creates a new instance of the class
         self = super().__new__(cls)
 
         self.__name = name
@@ -21,7 +21,7 @@ class Room:
 
         # return the pointer created by the constructor
         return self
-    
+
     def connect_exit(self, direction: str, room: Room) -> None:
         """
         Connects the current room to another room in a given direction.
@@ -33,3 +33,17 @@ class Room:
         Returns the room in a given direction if it exists, otherwise returns None.
         """
         return self.__exists.get(direction)
+
+    @property
+    def name(self) -> str:
+        """
+        Returns the name of the room.
+        """
+        return self.__name
+
+    @property
+    def description(self) -> str:
+        """
+        Returns the description of the room.
+        """
+        return self.__description
